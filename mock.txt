@@ -1,0 +1,26 @@
+locdata={'visitedLocNameEN':'Hello','visitedLocAddressEN':'hello_place', 'visitedLocX':'1', 'visitedLocY':'2', 'visitedLocDateFrom':'2000-08-10','visitedLocDateTo':'2000-08-11','visitedLocCategory':'hi'}
+patientdata={'patientName': 'Marco Mak', 'patientHKID': 'Y9999995','patientBDay': '2000-08-10'}
+virusdata={'virusName': 'COVID-19', 'virusCommonName': 'COVID-19', 'virusDay':'2020-12-08'}
+
+from case_record.serializer import CaseRecordSerializer
+casedata={
+    'patient':{'patientName': 'Marco Jak', 'patientHKID': 'Y9999995','patientBDay': '2000-08-10'},
+    'virus':{'virusName': 'COVID-19', 'virusCommonName': 'COVID-19', 'virusDay':'30'},
+    'visitedLoc': [
+        {'visitedLocNameEN':'Hello','visitedLocAddressEN':'hello_place', 'visitedLocX':'1', 'visitedLocY':'2', 'visitedLocDateFrom':'2000-08-10','visitedLocDateTo':'2000-08-11','visitedLocCategory':'hi'},
+        {'visitedLocNameEN':'Hello2','visitedLocAddressEN':'hello_place2', 'visitedLocX':'30', 'visitedLocY':'40', 'visitedLocDateFrom':'2000-10-10','visitedLocDateTo':'2001-08-11','visitedLocCategory':'on9'}
+        ]
+}
+tmp=CaseRecordSerializer(data=casedata)
+
+from visited_location.serializer import LocationSerializer
+locdata = {
+    'locNameEN': 'on9999999999',
+    'locAddressEN': '212312 dfdfadf asfdadsf',
+    'locX': '21312.12312',
+    'locY': '21312.12312'
+}
+tmp = LocationSerializer(data=locdata)
+
+
+{"patient": {"patientName": "Marco Jak", "patientHKID": "Y9999995", "patientBDay": "2000-08-10"}, "virus": {"virusName": "COVID-19", "virusCommonName": "COVID-19", "virusDay": "30"}, "visitedLoc": [{"visitedLocDateFrom": "2000-08-10", "visitedLocDateTo": "2000-08-11", "visitedLocCategory": "hi", "visitedLoc": {"locNameEN": "on9999999999", "locAddressEN": "212312 dfdfadf asfdadsf", "locX": "21312.12312", "locY": "21312.12312"}}]}

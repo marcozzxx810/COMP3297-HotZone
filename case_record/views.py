@@ -10,5 +10,5 @@ class CaseRecordView(APIView):
         serializer = CaseRecordSerializer(data=request.data)
         if serializer.is_valid():
             case = serializer.save()
-            return Response(case.id, status=status.HTTP_201_CREATED)
+            return Response(f"Case Created: ID:{case.id}, ", status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

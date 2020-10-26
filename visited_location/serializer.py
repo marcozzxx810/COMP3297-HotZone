@@ -1,4 +1,5 @@
 from rest_framework import serializers
+from case_record.models import CaseRecord
 from visited_location.models import Location, VisitedLocationRecord
 
 
@@ -19,12 +20,24 @@ class VisitedLocationRecordSerializer(serializers.Serializer):
     visitedLocDateTo = serializers.DateField()
     visitedLocCategory = serializers.CharField(max_length=50)
     visitedLoc = LocationSerializer()
+    case_record = serializers.IntegerField()
+
+    def validate_case_record(self, value):
+        try: 
+            case = CaseRecord.objects.get(id=value)
+            return value
+        except:
+            raise serializers.ValidationError('Case Record Not Found')
 
     def create(self, validated_data):
         loc_serializer = self.fields['visitedLoc']
         location_validated_data = validated_data.pop('visitedLoc')
         location = loc_serializer.create(location_validated_data)
         validated_data['visitedLoc'] = location
+
+        casePK = validated_data.pop('case_record')
+        case = CaseRecord.objects.get(id=casePK)
+        validated_data['case_record'] = case
 
         vrecord = VisitedLocationRecord.objects.create(**validated_data)
 

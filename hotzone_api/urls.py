@@ -17,10 +17,12 @@ from django.contrib import admin
 from django.urls import path
 from . import views
 from case_record.views import CaseRecordView
+from visited_location.views import VisitedLocationView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     #path('', views.index, name='index'),
     path('', views.Index.as_view(), name='index'),
-    path('caserecord/', CaseRecordView.as_view(), name='caserecord')
+    path('caserecord/', CaseRecordView.as_view(), name='caserecord'),
+    path('visitedlocation/', VisitedLocationView.as_view(), name='caserecord')
 ]

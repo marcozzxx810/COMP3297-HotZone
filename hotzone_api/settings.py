@@ -11,11 +11,11 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
 from pathlib import Path
+import dj_database_url
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
-STATIC_URL = '/statics/'
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
@@ -26,7 +26,7 @@ SECRET_KEY = '1!09jue41h8k7eu3gp+mla)_$-i_wbkl7x&nw=nt(zkc%-1jix'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['https://hotzonemarcomak.herokuapp.com/']
 
 
 # Application definition
@@ -82,14 +82,7 @@ WSGI_APPLICATION = 'hotzone_api.wsgi.application'
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-       'ENGINE': 'django.db.backends.postgresql_psycopg2',
-       'HOST': 'localhost',
-       'NAME': 'hotzone',
-       'USER': 'hotzone1',
-       'PASSWORD': 'hotzone1',
-       'PORT': '5432',
-   }
+    'default': dj_database_url.config(default=os.getenv('DATABASE_URL'))
 }
 
 

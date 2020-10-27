@@ -1,0 +1,1 @@
+web: gunicorn --pythonpath hotzone_api hotzone_api.wsgi

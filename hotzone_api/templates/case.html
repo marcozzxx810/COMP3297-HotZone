@@ -17,7 +17,40 @@
     {% load static %}
  
     <!-- use django static tag ton load js file and css file. -->
-    <script src="{% static 'index.js' %}"></script>
+    <script>
+    function objectifyForm(form) {
+        var finalObj = { };
+        $.each($(form).serializeArray(), function() {
+            finalObj[this.name] = this.value;
+        });
+        return finalObj
+    };
+    function submitCaseForm() {
+        $("div.error_msg").empty();
+        const patientobj = objectifyForm("form.patient");
+        const caseobj = objectifyForm("form.case");
+        caseobj['patient'] = patientobj;
+        var r = confirm('Confirm to submit this case information?\n'+JSON.stringify(caseobj));
+        if(r){
+            $.ajax({
+                url: "/caserecord/",
+                data: JSON.stringify(caseobj),
+                type: "POST",
+                dataType: "json",
+                contentType: "application/json;charset=utf-8",
+                success: function(returnData){
+                    $("div.error_msg").append(`<p style="color:green;">${returnData}</p>`);
+                    $("form.patient").trigger("reset");
+                    $("form.case").trigger("reset");
+                },
+                error: function(xhr, ajaxOptions, thrownError){
+                    $("div.error_msg").append(`<p style="color:red;">${xhr.responseText}</p>`);
+                }
+            });
+        }
+    };
+
+    </script>
 </head>
     <body>
       <nav class="navbar navbar-expand-lg navbar-light bg-light">

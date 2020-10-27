@@ -24,10 +24,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = '1!09jue41h8k7eu3gp+mla)_$-i_wbkl7x&nw=nt(zkc%-1jix'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['https://hotzonemarcomak.herokuapp.com/']
 
+PROJECT_DIR = os.path.dirname(os.path.abspath(__file__))
+STATIC_ROOT = os.path.join(PROJECT_DIR, 'static')
 
 # Application definition
 

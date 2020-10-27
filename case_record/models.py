@@ -11,5 +11,8 @@ class CaseRecord(models.Model):
     )
     virus = models.ForeignKey(
         Virus,
+        to_field='virusName',
         on_delete=models.CASCADE,
     )
+    caseDateofConfirm = models.DateField()
+    caseType = models.CharField(max_length=50)

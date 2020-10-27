@@ -28,7 +28,7 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav">
-            <li class="nav-item active">
+            <li class="nav-item">
               <a class="nav-link" href="/">Home</a>
             </li>
             <li class="nav-item">
@@ -37,20 +37,32 @@
             <li class="nav-item">
               <a class="nav-link" href="/vlocationadd/">Location</a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item active">
                 <a class="nav-link" href="/virusadd/">Virus</a>
             </li>
           </ul>
         </div>
       </nav>
-        
+           
         <div class="container">
-            </br>
-            <h2>Welcome to HotZone</h2>
-            </br>
-            <p>- To create case, please navigate to the case tab</p>
-            <p>- To create location record , please navigate to the location tab</p>
-            <p>- To create virus , please navigate to the virus tab</p>
+            <h2>Virus Details</h2>
+            <form class="virus" >
+                <div class="form-group">
+                <label for="inputdefault">Virus's Name</label>
+                <input class="form-control" name="virusName" type="text">
+                </div>
+                <div class="form-group">
+                <label for="inputlg">Virus's Common Name</label>
+                <input class="form-control input-lg" name="virusCommonName" type="text">
+                </div>
+                <div class="form-group">
+                <label for="inputlg">Virus's Infectious Period</label>
+                <input class="form-control input-lg" name="virusDay" type="number">
+                </div>
+            </form>
+            <br />
+            <div class="error_msg"></div>
+            <button type="button" class="btn btn-primary" onclick="submitVirusForm()" >Submit</button>
         </div>
     </body>
 </html>

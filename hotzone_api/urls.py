@@ -15,14 +15,19 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from . import views
+from hotzone_api.views import CaseAddView, VistedLocationAddView, IndexView, VirusAddView
 from case_record.views import CaseRecordView
 from visited_location.views import VisitedLocationView
+from virus.views import VirusView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     #path('', views.index, name='index'),
-    path('', views.Index.as_view(), name='index'),
+    path('', IndexView.as_view(), name='index'),
+    path('caseadd/', CaseAddView.as_view(), name='caseadd'),
+    path('vlocationadd/', VistedLocationAddView.as_view(), name='visitedlocationadd'),
+    path('virusadd/', VirusAddView.as_view(), name='virusadd'),
     path('caserecord/', CaseRecordView.as_view(), name='caserecord'),
-    path('visitedlocation/', VisitedLocationView.as_view(), name='caserecord')
+    path('visitedlocation/', VisitedLocationView.as_view(), name='visitedlocation'),
+    path('virus/', VirusView.as_view(), name='virus'),
 ]

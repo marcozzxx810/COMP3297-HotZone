@@ -5,7 +5,7 @@ from case_record.models import CaseRecord
 
 class Location(models.Model):
     locNameEN = models.CharField(max_length=100)
-    locAddressEN = models.CharField(max_length=100)
+    locAddressEN = models.CharField(max_length=100, null=True)
     locX = models.FloatField()
     locY = models.FloatField()
 

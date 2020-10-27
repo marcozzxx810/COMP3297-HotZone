@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>{% block page_title %}{% endblock %}</title>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+     <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+ 
+    <!-- add below Django command to use bootstrap3 in web page.  -->
+    <!-- first load django static tag. -->
+    {% load static %}
+ 
+    <!-- use django static tag ton load js file and css file. -->
+    <script src="{% static 'index/index.js' %}"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'index/style.css' %}">
+</head>
+    <body>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="#">HotZone</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+              <ul class="navbar-nav">
+                <li class="nav-item">
+                  <a class="nav-link" href="/">Home</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="/caseadd">Case</a>
+                </li>
+                <li class="nav-item active">
+                  <a class="nav-link" href="/vlocationadd/">Location</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/virusadd/">Virus</a>
+                </li>
+              </ul>
+            </div>
+          </nav>
+        
+        <div class="container">
+            <h2>Location Record Add</h2>
+            <h5>Search Data in GeoData Store</h5>
+            <form class="form-inline geoDataSearch">
+                <input type="text" class="form-control mb-2 mr-sm-2" id="geoSearch" placeholder="HKU">
+                <button type="button" class="btn btn-primary mb-2" onclick="submitSearch()" style="margin-right:20px;" >Search</button>
+                <button type="button" class="btn btn-primary mb-2" onclick="clearSearch()" >Clear</button>
+            </form>
+            <h5>Location Information</h5>
+            <form class="locationData" >
+                <div class="form-group">
+                <label for="inputdefault">Location Name</label>
+                <input class="form-control" name="locNameEN" type="text" readonly>
+                </div>
+                <div class="form-group">
+                <label for="inputlg">Location Address</label>
+                <input class="form-control input-lg" name="locAddressEN" type="text"readonly>
+                </div>
+                <div class="form-group">
+                <label for="inputlg">HK1980 Location X</label>
+                <input class="form-control input-lg" name="locX" type="number" readonly>
+                </div>
+                <div class="form-group">
+                <label for="inputlg">HK1980 Location Y</label>
+                <input class="form-control input-lg" name="locY" type="number"readonly>
+                </div>
+            </form>
+            <h5>Location Record Information</h5>
+            <form class="locationRecord" >
+                <div class="form-group">
+                <label for="inputdefault">Case Record ID</label>
+                <input class="form-control" name="case_record" type="number" min="1" step="1">
+                </div>
+                <div class="form-group">
+                <label for="inputlg">Visited Date From</label>
+                <input class="form-control input-lg" name="visitedLocDateFrom" type="date">
+                </div>
+                <div class="form-group">
+                <label for="inputlg">Visited Date To</label>
+                <input class="form-control input-lg" name="visitedLocDateTo" type="date">
+                </div>
+                <div class="form-group">
+                    <label for="inputlg">Category</label>
+                    <select class="custom-select" name="visitedLocCategory">
+                      <option selected>Choose...</option>
+                      <option value="residence">Residence</option>
+                      <option value="workplace">Workplace</option>
+                      <option value="visit">Visit</option>
+                    </select>
+                </div>
+            </form>
+            <br />
+            <div class="error_msg"></div>
+            <button type="button" class="btn btn-primary" onclick="submitLocationRecordForm()" >Submit</button>
+            <br />
+            <br />
+          </div>
+    </body>
+</html>

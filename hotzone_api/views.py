@@ -4,9 +4,14 @@ from django.views.generic import TemplateView, ListView
 
 # Create your views here.
 
-
-def index(request):
-    return render(request, 'index.html')
-
-class Index(TemplateView):
+class IndexView(TemplateView):
     template_name = 'index.html'
+
+class CaseAddView(TemplateView):
+    template_name = 'case.html'
+
+class VistedLocationAddView(TemplateView):
+    template_name = 'visitedlocation.html'
+
+class VirusAddView(TemplateView):
+    template_name = 'virus.html'

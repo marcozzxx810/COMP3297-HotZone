@@ -5,7 +5,7 @@ from visited_location.models import Location, VisitedLocationRecord
 
 class LocationSerializer(serializers.Serializer):
     locNameEN = serializers.CharField(max_length=100)
-    locAddressEN = serializers.CharField(max_length=100)
+    locAddressEN = serializers.CharField(max_length=100, allow_blank=True)
     locX = serializers.FloatField()
     locY = serializers.FloatField()
     

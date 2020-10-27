@@ -7,8 +7,15 @@ class VirusSerializer(serializers.Serializer):
     virusCommonName = serializers.CharField(max_length=100)
     virusDay = serializers.IntegerField()
 
+    def validate_virusName(self, value):
+        virus = Virus.objects.filter(virusName=value)
+        if len(virus):
+            raise serializers.ValidationError(f'Virus: {value} already in used')
+        else:
+            return value
+
     def create(self, validated_data):
-        return Virus.objects.get_or_create(**validated_data)[0]
+        return Virus.objects.create(**validated_data)
 
     def update(self, instance, validated_data):
         pass

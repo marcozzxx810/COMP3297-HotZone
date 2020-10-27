@@ -2,7 +2,7 @@ from django.db import models
 
 
 class Virus(models.Model):
-    virusName = models.CharField(max_length=100)
+    virusName = models.CharField(max_length=100, primary_key=True)
     virusCommonName = models.CharField(max_length=100)
     virusDay = models.IntegerField()
 

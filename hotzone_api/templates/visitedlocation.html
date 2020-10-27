@@ -52,6 +52,27 @@
                 });
             }
         }
+        function submitSearch() {
+            var url = 'https://geodata.gov.hk/gs/api/v1.0.0/locationSearch?'
+            if ( ! $("#geoSearch")[0].value ) {
+                alert("Please enter location");
+                return
+            }
+            var parms = {'q':$("#geoSearch")[0].value};
+            var str = jQuery.param( parms );
+            $.getJSON(url+str, function(json){
+                if(json.length == 1){
+                    $.each($("form.locationData")[0], function(){
+                        value = json[0][lowerFirstLetter(this.name.substring(3))];
+                        this.value = value;
+                    })
+                } else {
+                    alert(`GeoData Store return ${json.length} results`);
+                }
+            }).fail( function(d, textStatus, error) {
+                alert("Cannot retrieve Geodata, status: " + textStatus + ", error: "+error);
+            });;
+        }
         function clearSearch(){
             $("form.locationData").trigger("reset");
         }

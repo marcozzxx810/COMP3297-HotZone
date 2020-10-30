@@ -21,3 +21,6 @@ python3 manage.py runserver_plus
 - To create case
 - To create location record 
 - To create virus 
+
+## Depolyment
+Link: https://hotzonemarcomak.herokuapp.com/
